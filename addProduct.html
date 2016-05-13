@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-router.min.js"></script>
+<script src="addProduct.js"> </script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+    <!-- associating the body tag with the created module and controller -->
+ <body ng-app="myOnlineApp" ng-controller='myControl'>
+ <!-- partial view is used to view number of  initial products
+ using the service -->
+ <div ng-view="welcomeview"> <b> Initial Products: </b> {{ numProd }} </div>
+     <table class="table">
+ <!-- a partial view used total number of products -->    
+ <tr ng-view="numview"> <b> Total Products: </b> {{ myProducts.length }} </tr>
+<!-- creating column headers -->
+<tr class="danger">
+  <th> Name</th>
+  <th> Description </th>
+  <th> Price </th>
+  <th> Actions </th>
+</tr>
+<!-- a partial view used with ng-repeat directive to
+iterate along the items in an array -->
+<tr ng-view="productinfo" ng-repeat='product in myProducts' class="info">
+    <!-- associating each column with a ng-model directive to bind the changes -->
+<td> <input ng-model="product.Name"> </td>
+<td> <input ng-model='product.Description'> </td>
+<!-- using currency filter to display the price in terms of dollars -->
+<td> <input ng-model='product.Price | currency'></td>
+<!-- creating a button to add new products using bootstrap-->
+<td><button ng-click="add()" class="btn btn-primary"> add </button> </td>
+</tr>
+
+</table>
+</body>
+</html>
